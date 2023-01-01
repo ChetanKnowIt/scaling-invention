@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://docs.flutter.dev/cookbook/networking/send-data -->
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Send data to the internet | Flutter</title>
+    <style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.3333333333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-both,:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fad.fa-inverse{color:#fff}</style><link rel="icon" href="https://docs.flutter.dev/assets/images/shared/brand/flutter/icon/64.png">
+    <link rel="apple-touch-icon" href="https://docs.flutter.dev/assets/images/shared/brand/flutter/logo/flutter-logomark-320px.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+
+    
+      <meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4">
+      <script async="" src="./Send data to the internet _ Flutter_files/analytics.js.download"></script><script async="" src="./Send data to the internet _ Flutter_files/gtm.js.download"></script><script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-ND4LWWZ');
+      </script>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-67589403-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+
+    
+    
+
+    <meta name="description" content="How to use the http package to send data over the internet.">
+    <meta name="keywords" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@flutterdev">
+
+    <meta property="og:title" content="Send data to the internet">
+    <meta property="og:url" content="https://docs.flutter.dev/cookbook/networking/send-data">
+    <meta property="og:description" content="How to use the http package to send data over the internet.">
+    <meta property="og:image" content="">
+
+    
+      <link href="./Send data to the internet _ Flutter_files/css" rel="stylesheet">
+      <link href="./Send data to the internet _ Flutter_files/css(1)" rel="stylesheet">
+      <link href="./Send data to the internet _ Flutter_files/css(2)" rel="stylesheet">
+      <link href="./Send data to the internet _ Flutter_files/css(3)" rel="stylesheet">
+      <script src="./Send data to the internet _ Flutter_files/all.js.download" data-auto-replace-svg="nest">
+      </script>
+    
+
+    
+ 
+    <script>
+      window.__CALLBACKS = [];
+    </script>
+
+    <link rel="stylesheet" href="./Send data to the internet _ Flutter_files/main.css">
+    
+
+  </head>
+  <body>
+  
+    
+      <noscript>
+        <iframe 
+          src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+          height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+      </noscript>
+    
+    
+    <div id="overlay-under-drawer"></div>
+
+    
+
+<header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="https://flutter.dev/">
+      <img src="./Send data to the internet _ Flutter_files/flutter-lockup.png" alt="Flutter logo" height="37" width="129" class="align-middle">
+    </a>
+
+    <div id="navbarSupportedContent" class="collapse navbar-collapse flex-grow-0">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/install">1. Install</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/editor">2. Set up an editor</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/test-drive">3. Test drive</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/codelab">4. Write your first app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/learn-more">5. Learn more</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/ios-devs">Flutter for iOS devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/web">Building a web app</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">Samples &amp; tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev/" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="https://docs.flutter.dev/cookbook">Cookbook</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/tutorials">Tutorials</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="https://docs.flutter.dev/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/widgets-intro">Introduction to widgets</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="https://docs.flutter.dev/development/ui/layout" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/interactive">Adding interactivity</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/assets-and-images">Assets and images</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-5" href="https://docs.flutter.dev/development/ui/navigation" role="button" aria-expanded="false" aria-controls="sidenav-3-1-5">Navigation &amp; routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-5">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="https://docs.flutter.dev/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="https://docs.flutter.dev/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/actions_and_shortcuts">Actions &amp; shortcuts [NEW]</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/focus">Keyboard focus [NEW]</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/splash-screen">Splash screens</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/widgets">Widget catalog</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3-2" role="button" aria-expanded="false" aria-controls="sidenav-3-2">Data &amp; backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3-2-1" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/networking">Networking &amp; http</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/json">JSON and serialization</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/firebase">Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="https://docs.flutter.dev/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">Accessibility &amp; internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="https://docs.flutter.dev/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/ios-app-clip">Adding iOS App Clip support</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/apple-watch">Apple Watch support</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/c-interop">C interop</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/platform-views">Hosting native Android and iOS views</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/web">Web FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/desktop">Desktop</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="https://docs.flutter.dev/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages &amp; plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/using-packages">Using packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/developing-packages">Developing packages &amp; plugins</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/background-processes">Background processes</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/plugin-api-migration">Android plugin upgrade</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="https://docs.flutter.dev/development/add-to-app" role="button" aria-expanded="false" aria-controls="sidenav-3-6">Add Flutter to existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app">Introduction</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-2" href="https://docs.flutter.dev/development/add-to-app/android" role="button" aria-expanded="false" aria-controls="sidenav-3-6-2">Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-3" href="https://docs.flutter.dev/development/add-to-app/ios" role="button" aria-expanded="false" aria-controls="sidenav-3-6-3">Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/debugging">Debugging &amp; hot reload</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/performance">Loading sequence and performance</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7" href="https://docs.flutter.dev/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-7">Tools &amp; features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/android-studio">Android Studio &amp; IntelliJ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7-3" href="https://docs.flutter.dev/development/tools/devtools" role="button" aria-expanded="false" aria-controls="sidenav-3-7-3">DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/android-studio">Install from Android Studio &amp; IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7-4" href="https://docs.flutter.dev/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-7-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/hot-reload">Hot reload</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/flutter-fix">Flutter Fix</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/formatting">Code formatting</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/web-renderers">Web renderers</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-8" href="https://docs.flutter.dev/development/androidx-migration" role="button" aria-expanded="false" aria-controls="sidenav-3-8">Migration notes
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-8">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/androidx-migration">AndroidX migration</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/plugin-api-migration">Android plugin upgrade</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ios-14">Developing for iOS 14</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ios-project-migration">Xcode migration</a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">Testing &amp; debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/debugging">Debugging tools</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/code-debugging">Debugging apps programmatically</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/oem-debuggers">Using an OEM debugger</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/build-modes">Flutter's build modes</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/common-errors">Common Flutter errors</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/errors">Handling errors</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing">Testing</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/integration-tests">Integration testing</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">Performance &amp; optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf">Overview</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/best-practices">Performance best practices</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/app-size">App size</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/deferred-components">Deferred components</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/rendering-performance">Rendering performance</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/ui-performance">Performance profiling</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/shader">Reduce shader compilation jank</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/metrics">Performance metrics</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/faq">Performance FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/appendix">Appendix</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/obfuscate">Obfuscating Dart code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/flavors">Creating flavors for Flutter</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/android">Build and release an Android app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/ios">Build and release an iOS app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/macos">Build and release a macOS app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/linux">Build and release a Linux app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/windows">Build and release a Windows app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/web">Build and release a web app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/cd">Continuous deployment</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-7" role="button" aria-expanded="false" aria-controls="sidenav-7">Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/bootstrap-into-dart">Dart resources</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/compatibility">Compatibility policy</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/architectural-overview">Architectural overview</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/inside-flutter">Inside Flutter</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/platform-adaptations">Platform adaptations</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/videos">Videos and online courses</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/books">Books</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/faq">FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/design-docs">Design Documents</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/bug-reports">Creating useful bug reports</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1KXNtO9My2AMpDOF9A9Y_4aj4_BcgmDDT" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-8" role="button" aria-expanded="true" aria-controls="sidenav-8">Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/dash">Who is Dash?</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/widgets">Widget index</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev/" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/flutter-cli">flutter CLI reference</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="https://flutter.dev/multi-platform" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Multi-Platform
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/mobile">Mobile</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/web">Web</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/desktop">Desktop</a>
+              <a class="dropdown-item" href="https://flutter.dev/multi-platform/embedded">Embedded</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="https://flutter.dev/development" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Development
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://flutter.dev/learn">Learn</a>
+              <a class="dropdown-item" href="https://pub.dev/flutter/favorites" target="_blank">Flutter Favorites</a>
+              <a class="dropdown-item" href="https://pub.dev/" target="_blank">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="https://flutter.dev/ecosystem" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Ecosystem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://flutter.dev/community">Community</a>
+              <a class="dropdown-item" href="https://flutter.dev/events">Events</a>
+              <a class="dropdown-item" href="https://flutter.dev/monetization">Monetization</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://flutter.dev/showcase">Showcase</a>
+          </li>
+          <li class="nav-item dropdown docs-item">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="https://docs.flutter.dev/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Docs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item " href="https://docs.flutter.dev/whats-new">What's New</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/get-started/editor?tab=androidstudio">Editor Support</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/development/tools/hot-reload">Hot Reload</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/perf/rendering/ui-performance">Profiling</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/get-started/install">Install Flutter</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/development/tools/devtools/overview">Dev Tools</a>
+              <a class="dropdown-item  active" href="https://docs.flutter.dev/cookbook">Cookbook</a>
+              <a class="dropdown-item " href="https://docs.flutter.dev/reference/tutorials">Tutorials</a>
+            </div>
+          </li>
+        </ul>
+        <form action="https://docs.flutter.dev/search/" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/FlutterDev" aria-label="Twittter">
+        <i class="" data-fa-i2svg=""><svg class="svg-inline--fa fa-twitter fa-w-16 fa-lg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></i>
+      </a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev" aria-label="YouTube">
+        <i class="" data-fa-i2svg=""><svg class="svg-inline--fa fa-youtube fa-w-18 fa-lg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></i>
+    </a>
+      <a class="nav-item nav-link" href="https://github.com/flutter" aria-label="Github">
+        <i class="" data-fa-i2svg=""><svg class="svg-inline--fa fa-github fa-w-16 fa-lg" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></i>
+    </a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="https://docs.flutter.dev/get-started/install/">Get started
+      </a>
+    </nav>
+</header>
+
+    
+  <div class="site-banner site-banner--default" role="alert">
+   Join Flutter at Google I/O 2022 live from Shoreline Amphitheatre and online May 11-12. <a href="https://io.google/2022/?utm_source=flutter&amp;utm_medium=embedded_marketing&amp;utm_campaign=hpp_svd&amp;utm_content=">Register now</a><br>
+   The Flutter and Dart teams are hiring. <a href="https://docs.flutter.dev/jobs">Learn more</a>
+  </div>
+
+
+    <div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="" style="position: fixed; max-height: 4869px; top: 66px;">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">Get started</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/install">1. Install</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/editor">2. Set up an editor</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/test-drive">3. Test drive</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/codelab">4. Write your first app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/learn-more">5. Learn more</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">From another platform?
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/android-devs">Flutter for Android devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/ios-devs">Flutter for iOS devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/react-native-devs">Flutter for React Native devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/web-devs">Flutter for web devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/xamarin-forms-devs">Flutter for Xamarin.Forms devs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/flutter-for/declarative">Introduction to declarative UI</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://dart.dev/overview" target="_blank" rel="noopener">Dart language overview<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/get-started/web">Building a web app</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">Samples &amp; tutorials</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://gallery.flutter.dev/" target="_blank" rel="noopener">Flutter Gallery [running app]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/gallery" target="_blank" rel="noopener">Flutter Gallery [repo]<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/samples/" target="_blank" rel="noopener">Sample apps on GitHub<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="https://docs.flutter.dev/cookbook">Cookbook</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/tutorials">Tutorials</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">Development</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="https://docs.flutter.dev/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">User interface
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/widgets-intro">Introduction to widgets</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="https://docs.flutter.dev/development/ui/layout" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">Building layouts
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout">Layouts in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/adaptive-responsive">Creating adaptive and responsive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/building-adaptive-apps">Building adaptive apps</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/constraints">Understanding constraints</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/layout/box-constraints">Box constraints</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/interactive">Adding interactivity</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/assets-and-images">Assets and images</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-5" href="https://docs.flutter.dev/development/ui/navigation" role="button" aria-expanded="false" aria-controls="sidenav-3-1-5">Navigation &amp; routing
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-5">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation">Navigation in Flutter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation/deep-linking">Deep linking</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/navigation/url-strategies">URL strategies</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="https://docs.flutter.dev/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">Animations
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/tutorial">Tutorial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/implicit-animations">Implicit animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/hero-animations">Hero animations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/animations/staggered-animations">Staggered animations</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="https://docs.flutter.dev/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">Advanced UI
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/actions_and_shortcuts">Actions &amp; shortcuts [NEW]</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/focus">Keyboard focus [NEW]</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/gestures">Gestures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/slivers">Slivers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/advanced/splash-screen">Splash screens</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ui/widgets">Widget catalog</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3-2" role="button" aria-expanded="false" aria-controls="sidenav-3-2">Data &amp; backend
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-3-2-1" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">State management
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/intro">Introduction</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/declarative">Think declaratively</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/ephemeral-vs-app">Ephemeral vs app state</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple">Simple app state management</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/state-mgmt/options">Options</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/networking">Networking &amp; http</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/json">JSON and serialization</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/data-and-backend/firebase">Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="https://docs.flutter.dev/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">Accessibility &amp; internationalization
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/accessibility-and-localization/accessibility">Accessibility</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/accessibility-and-localization/internationalization">Internationalization</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="https://docs.flutter.dev/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">Platform integration
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/release-notes/supported-platforms">Supported platforms</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/ios-app-clip">Adding iOS App Clip support</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/apple-watch">Apple Watch support</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/c-interop">C interop</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/platform-views">Hosting native Android and iOS views</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/web">Web FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/platform-integration/platform-channels">Writing platform-specific code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/desktop">Desktop</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="https://docs.flutter.dev/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages &amp; plugins
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/using-packages">Using packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/developing-packages">Developing packages &amp; plugins</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/favorites">Flutter Favorites program</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/background-processes">Background processes</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/plugin-api-migration">Android plugin upgrade</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="https://docs.flutter.dev/development/add-to-app" role="button" aria-expanded="false" aria-controls="sidenav-3-6">Add Flutter to existing app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app">Introduction</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-2" href="https://docs.flutter.dev/development/add-to-app/android" role="button" aria-expanded="false" aria-controls="sidenav-3-6-2">Adding to an Android app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-2">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-fragment">Add a Flutter Fragment</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/add-flutter-view">Add a Flutter View</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/android/plugin-setup">Plugin setup</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-3" href="https://docs.flutter.dev/development/add-to-app/ios" role="button" aria-expanded="false" aria-controls="sidenav-3-6-3">Adding to an iOS app
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/ios/project-setup">Project setup</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/ios/add-flutter-screen">Add a single Flutter screen</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/debugging">Debugging &amp; hot reload</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/performance">Loading sequence and performance</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/add-to-app/multiple-flutters">Multiple Flutter instances</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7" href="https://docs.flutter.dev/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-7">Tools &amp; features
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/android-studio">Android Studio &amp; IntelliJ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7-3" href="https://docs.flutter.dev/development/tools/devtools" role="button" aria-expanded="false" aria-controls="sidenav-3-7-3">DevTools
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-3">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/android-studio">Install from Android Studio &amp; IntelliJ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/vscode">Install from VS Code</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/cli">Install from command line</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/inspector">Flutter inspector</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/performance">Performance view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/cpu-profiler">CPU Profiler view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/memory">Memory view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/network">Network view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/debugger">Debugger</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/logging">Logging view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/app-size">App size tool</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/devtools/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-7-4" href="https://docs.flutter.dev/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-7-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/overview">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/upgrading">Upgrading</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/releases">Releases</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/release/breaking-changes">Breaking changes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/sdk/release-notes">Release notes</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/pubspec">Flutter and the pubspec file</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/hot-reload">Hot reload</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/flutter-fix">Flutter Fix</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/formatting">Code formatting</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/tools/web-renderers">Web renderers</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-8" href="https://docs.flutter.dev/development/androidx-migration" role="button" aria-expanded="false" aria-controls="sidenav-3-8">Migration notes
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-8">
+      <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/androidx-migration">AndroidX migration</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/packages-and-plugins/plugin-api-migration">Android plugin upgrade</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ios-14">Developing for iOS 14</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/development/ios-project-migration">Xcode migration</a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">Testing &amp; debugging</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/debugging">Debugging tools</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/code-debugging">Debugging apps programmatically</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/oem-debuggers">Using an OEM debugger</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/build-modes">Flutter's build modes</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/common-errors">Common Flutter errors</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/errors">Handling errors</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing">Testing</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/integration-tests">Integration testing</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/testing/integration-tests/migration">Migrating from flutter_driver</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">Performance &amp; optimization</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf">Overview</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/best-practices">Performance best practices</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/app-size">App size</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/deferred-components">Deferred components</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/rendering-performance">Rendering performance</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/ui-performance">Performance profiling</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/shader">Reduce shader compilation jank</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/metrics">Performance metrics</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/faq">Performance FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/perf/appendix">Appendix</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">Deployment</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/obfuscate">Obfuscating Dart code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/flavors">Creating flavors for Flutter</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/android">Build and release an Android app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/ios">Build and release an iOS app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/macos">Build and release a macOS app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/linux">Build and release a Linux app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/windows">Build and release a Windows app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/web">Build and release a web app</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/deployment/cd">Continuous deployment</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-7" role="button" aria-expanded="false" aria-controls="sidenav-7">Resources</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/bootstrap-into-dart">Dart resources</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/compatibility">Compatibility policy</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/architectural-overview">Architectural overview</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/inside-flutter">Inside Flutter</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/packages/google_fonts" target="_blank" rel="noopener">Google Fonts package<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/platform-adaptations">Platform adaptations</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/videos">Videos and online courses</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/books">Books</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/faq">FAQ</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/design-docs">Design Documents</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/resources/bug-reports">Creating useful bug reports</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing to Flutter<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1KXNtO9My2AMpDOF9A9Y_4aj4_BcgmDDT" target="_blank" rel="noopener">Official brand assets<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="https://docs.flutter.dev/cookbook/networking/send-data#sidenav-8" role="button" aria-expanded="true" aria-controls="sidenav-8">Reference</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-8">
+        <li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/dash">Who is Dash?</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/widgets">Widget index</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://api.flutter.dev/" target="_blank" rel="noopener">API reference<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.dev/reference/flutter-cli">flutter CLI reference</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.dev/flutter" target="_blank" rel="noopener">Package site<span class="material-icons md-24">
+        open_in_new
+      </span></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="" style="position: fixed; max-height: 4869px; top: 66px;">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul id="toc" class="section-nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#1-add-the-http-package">1. Add the http package</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#2-sending-data-to-server">2. Sending data to server</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link active" href="https://docs.flutter.dev/cookbook/networking/send-data#3-convert-the-httpresponse-to-a-custom-dart-object">3. Convert the http.Response to a custom Dart object</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#create-an-album-class">Create an Album class</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link active" href="https://docs.flutter.dev/cookbook/networking/send-data#convert-the-httpresponse-to-an-album">Convert the http.Response to an Album</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#4-get-a-title-from-user-input">4. Get a title from user input</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#5-display-the-response-on-screen">5. Display the response on screen</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="https://docs.flutter.dev/cookbook/networking/send-data#complete-example">Complete example</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+
+        
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="https://docs.flutter.dev/cookbook/networking/background-parsing">Parse JSON in the background</a>
+      </li>
+      <li class="next">
+          <a href="https://docs.flutter.dev/cookbook/networking/update-data">Update data over the internet</a>
+      </li>
+      </ul>
+  </nav>
+
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/flutter/website/tree/main/src/cookbook/networking/send-data.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="" data-fa-i2svg=""><svg class="svg-inline--fa fa-file-alt fa-w-12 fa-sm" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg></i>
+  </a>
+  <a href="https://github.com/flutter/website/issues/new?template=1_page_issue.yml&amp;title=[PAGE%20ISSUE]:%20%27Send%20data%20to%20the%20internet%27&amp;page-url=https://docs.flutter.dev/cookbook/networking/send-data/&amp;page-source=https://github.com/flutter/website/tree/main/src/cookbook/networking/send-data.md" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="" data-fa-i2svg=""><svg class="svg-inline--fa fa-bug fa-w-16 fa-sm" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg></i>
+  </a>
+</div>
+
+          <h1>Send data to the internet</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="https://docs.flutter.dev/cookbook" property="item" typeof="WebPage"><span property="name">Cookbook</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="https://docs.flutter.dev/cookbook/networking" property="item" typeof="WebPage"><span property="name">Networking</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="https://docs.flutter.dev/cookbook/networking/send-data" property="item" typeof="WebPage"><span property="name">Send data to the internet</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#1-add-the-http-package">1. Add the http package</a></li>
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#2-sending-data-to-server">2. Sending data to server</a></li>
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#3-convert-the-httpresponse-to-a-custom-dart-object">3. Convert the http.Response to a custom Dart object</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="https://docs.flutter.dev/cookbook/networking/send-data#create-an-album-class">Create an Album class</a></li>
+<li class="toc-entry toc-h3"><a href="https://docs.flutter.dev/cookbook/networking/send-data#convert-the-httpresponse-to-an-album">Convert the http.Response to an Album</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#4-get-a-title-from-user-input">4. Get a title from user input</a></li>
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#5-display-the-response-on-screen">5. Display the response on screen</a></li>
+<li class="toc-entry toc-h2"><a href="https://docs.flutter.dev/cookbook/networking/send-data#complete-example">Complete example</a></li>
+</ul>
+</div>
+
+<p>Sending data to the internet is necessary for most apps.
+The <code class="language-plaintext highlighter-rouge">http</code> package has got that covered, too.</p>
+
+<p>This recipe uses the following steps:</p>
+
+<ol>
+  <li>Add the <code class="language-plaintext highlighter-rouge">http</code> package.</li>
+  <li>Send data to a server using the <code class="language-plaintext highlighter-rouge">http</code> package.</li>
+  <li>Convert the response into a custom Dart object.</li>
+  <li>Get a <code class="language-plaintext highlighter-rouge">title</code> from user input.</li>
+  <li>Display the response on screen.</li>
+</ol>
+
+<h2 id="1-add-the-http-package">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#1-add-the-http-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Add the <code class="language-plaintext highlighter-rouge">http</code> package</h2>
+
+<p>To install the <a href="https://pub.dev/packages/http"><code class="language-plaintext highlighter-rouge">http</code></a> package, add it to the dependencies section
+of the <code class="language-plaintext highlighter-rouge">pubspec.yaml</code> file. You can find the latest version of the
+<a href="https://pub.dev/packages/http/install"><code class="language-plaintext highlighter-rouge">http</code> package</a> on pub.dev.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-0" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-0"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">http</span><span class="pi">:</span> <span class="s">&lt;latest_version&gt;</span>
+</code></pre></div></div></div></div>
+
+<p>Import the <code class="language-plaintext highlighter-rouge">http</code> package.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-1" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-1"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="kwd">import</span><span class="pln"> </span><span class="str">'package:http/http.dart'</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> http</span><span class="pun">;</span></pre></div></div>
+</div>
+
+<p>If you develop for android, add the following permission inside manifest tag in the AndroidManifest.xml file located at android/app/src/main.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-2" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-2"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
+</code></pre></div></div></div></div>
+
+<h2 id="2-sending-data-to-server">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#2-sending-data-to-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Sending data to server</h2>
+
+<p>This recipe covers how to create an <code class="language-plaintext highlighter-rouge">Album</code>
+by sending an album title to the
+<a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a> using the
+<a href="https://pub.dev/documentation/http/latest/http/post.html"><code class="language-plaintext highlighter-rouge">http.post()</code></a> method.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-3" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-3"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="typ">Future</span><span class="pun">&lt;</span><span class="pln">http</span><span class="pun">.</span><span class="typ">Response</span><span class="pun">&gt;</span><span class="pln"> createAlbum</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> title</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> http</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="pln">
+    </span><span class="typ">Uri</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="str">'https://jsonplaceholder.typicode.com/albums'</span><span class="pun">),</span><span class="pln">
+    headers</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'Content-Type'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'application/json; charset=UTF-8'</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    body</span><span class="pun">:</span><span class="pln"> jsonEncode</span><span class="pun">(&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'title'</span><span class="pun">:</span><span class="pln"> title</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}),</span><span class="pln">
+  </span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre></div></div>
+</div>
+
+<p>The <code class="language-plaintext highlighter-rouge">http.post()</code> method returns a <code class="language-plaintext highlighter-rouge">Future</code> that contains a <code class="language-plaintext highlighter-rouge">Response</code>.</p>
+
+<ul>
+  <li>
+<a href="https://api.flutter.dev/flutter/dart-async/Future-class.html"><code class="language-plaintext highlighter-rouge">Future</code></a> is a core Dart class for working with
+asynchronous operations. A Future object represents a potential
+value or error that will be available at some time in the future.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">http.Response</code> class contains the data received from a successful
+http call.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">createAlbum()</code> method takes an argument <code class="language-plaintext highlighter-rouge">title</code>
+that is sent to the server to create an <code class="language-plaintext highlighter-rouge">Album</code>.</li>
+</ul>
+
+<h2 id="3-convert-the-httpresponse-to-a-custom-dart-object">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#3-convert-the-httpresponse-to-a-custom-dart-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Convert the <code class="language-plaintext highlighter-rouge">http.Response</code> to a custom Dart object</h2>
+
+<p>While it’s easy to make a network request,
+working with a raw <code class="language-plaintext highlighter-rouge">Future&lt;http.Response&gt;</code>
+isn’t very convenient.  To make your life easier,
+convert the <code class="language-plaintext highlighter-rouge">http.Response</code> into a Dart object.</p>
+
+<h3 id="create-an-album-class">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#create-an-album-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create an Album class</h3>
+
+<p>First, create an <code class="language-plaintext highlighter-rouge">Album</code> class that contains
+the data from the network request.
+It includes a factory constructor that
+creates an <code class="language-plaintext highlighter-rouge">Album</code> from JSON.</p>
+
+<p>Converting JSON by hand is only one option.
+For more information, see the full article on
+<a href="https://docs.flutter.dev/development/data-and-backend/json">JSON and serialization</a>.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-4" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-4"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="kwd">class</span><span class="pln"> </span><span class="typ">Album</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> id</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> title</span><span class="pun">;</span><span class="pln">
+
+  </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">({</span><span class="kwd">required</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">id</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">required</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">title</span><span class="pun">});</span><span class="pln">
+
+  </span><span class="kwd">factory</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">.</span><span class="pln">fromJson</span><span class="pun">(</span><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">dynamic</span><span class="pun">&gt;</span><span class="pln"> json</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">(</span><span class="pln">
+      id</span><span class="pun">:</span><span class="pln"> json</span><span class="pun">[</span><span class="str">'id'</span><span class="pun">],</span><span class="pln">
+      title</span><span class="pun">:</span><span class="pln"> json</span><span class="pun">[</span><span class="str">'title'</span><span class="pun">],</span><span class="pln">
+    </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre></div></div>
+</div>
+
+<h3 id="convert-the-httpresponse-to-an-album">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#convert-the-httpresponse-to-an-album" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convert the <code class="language-plaintext highlighter-rouge">http.Response</code> to an <code class="language-plaintext highlighter-rouge">Album</code>
+</h3>
+
+<p>Use the following steps to update the <code class="language-plaintext highlighter-rouge">createAlbum()</code>
+function to return a <code class="language-plaintext highlighter-rouge">Future&lt;Album&gt;</code>:</p>
+
+<ol>
+  <li>Convert the response body into a JSON <code class="language-plaintext highlighter-rouge">Map</code> with the
+<code class="language-plaintext highlighter-rouge">dart:convert</code> package.</li>
+  <li>If the server returns a <code class="language-plaintext highlighter-rouge">CREATED</code> response with a status
+code of 201, then convert the JSON <code class="language-plaintext highlighter-rouge">Map</code> into an <code class="language-plaintext highlighter-rouge">Album</code>
+using the <code class="language-plaintext highlighter-rouge">fromJson()</code> factory method.</li>
+  <li>If the server doesn’t return a <code class="language-plaintext highlighter-rouge">CREATED</code> response with a
+status code of 201, then throw an exception.
+(Even in the case of a “404 Not Found” server response,
+throw an exception. Do not return <code class="language-plaintext highlighter-rouge">null</code>.
+This is important when examining
+the data in <code class="language-plaintext highlighter-rouge">snapshot</code>, as shown below.)</li>
+</ol>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-5" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-5"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="typ">Future</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;</span><span class="pln"> createAlbum</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> title</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">async</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> response </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">await</span><span class="pln"> http</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="pln">
+    </span><span class="typ">Uri</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="str">'https://jsonplaceholder.typicode.com/albums'</span><span class="pun">),</span><span class="pln">
+    headers</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'Content-Type'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'application/json; charset=UTF-8'</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    body</span><span class="pun">:</span><span class="pln"> jsonEncode</span><span class="pun">(&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'title'</span><span class="pun">:</span><span class="pln"> title</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}),</span><span class="pln">
+  </span><span class="pun">);</span><span class="pln">
+
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">response</span><span class="pun">.</span><span class="pln">statusCode </span><span class="pun">==</span><span class="pln"> </span><span class="lit">201</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// If the server did return a 201 CREATED response,</span><span class="pln">
+    </span><span class="com">// then parse the JSON.</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">.</span><span class="pln">fromJson</span><span class="pun">(</span><span class="pln">jsonDecode</span><span class="pun">(</span><span class="pln">response</span><span class="pun">.</span><span class="pln">body</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// If the server did not return a 201 CREATED response,</span><span class="pln">
+    </span><span class="com">// then throw an exception.</span><span class="pln">
+    </span><span class="kwd">throw</span><span class="pln"> </span><span class="typ">Exception</span><span class="pun">(</span><span class="str">'Failed to create album.'</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre></div></div>
+</div>
+
+<p>Hooray! Now you’ve got a function that sends the title to a
+server to create an album.</p>
+
+<h2 id="4-get-a-title-from-user-input">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#4-get-a-title-from-user-input" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Get a title from user input</h2>
+
+<p>Next, create a <code class="language-plaintext highlighter-rouge">TextField</code> to enter a title and
+a <code class="language-plaintext highlighter-rouge">ElevatedButton</code> to send data to server.
+Also define a <code class="language-plaintext highlighter-rouge">TextEditingController</code> to read the
+user input from a <code class="language-plaintext highlighter-rouge">TextField</code>.</p>
+
+<p>When the <code class="language-plaintext highlighter-rouge">ElevatedButton</code> is pressed, the <code class="language-plaintext highlighter-rouge">_futureAlbum</code>
+is set to the value returned by <code class="language-plaintext highlighter-rouge">createAlbum()</code> method.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-6" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-6"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="typ">Column</span><span class="pun">(</span><span class="pln">
+  mainAxisAlignment</span><span class="pun">:</span><span class="pln"> </span><span class="typ">MainAxisAlignment</span><span class="pun">.</span><span class="pln">center</span><span class="pun">,</span><span class="pln">
+  children</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">Widget</span><span class="pun">&gt;[</span><span class="pln">
+    </span><span class="typ">TextField</span><span class="pun">(</span><span class="pln">
+      controller</span><span class="pun">:</span><span class="pln"> _controller</span><span class="pun">,</span><span class="pln">
+      decoration</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">InputDecoration</span><span class="pun">(</span><span class="pln">hintText</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Enter Title'</span><span class="pun">),</span><span class="pln">
+    </span><span class="pun">),</span><span class="pln">
+    </span><span class="typ">ElevatedButton</span><span class="pun">(</span><span class="pln">
+      onPressed</span><span class="pun">:</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        setState</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          _futureAlbum </span><span class="pun">=</span><span class="pln"> createAlbum</span><span class="pun">(</span><span class="pln">_controller</span><span class="pun">.</span><span class="pln">text</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+      </span><span class="pun">},</span><span class="pln">
+      child</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="str">'Create Data'</span><span class="pun">),</span><span class="pln">
+    </span><span class="pun">),</span><span class="pln">
+  </span><span class="pun">],</span><span class="pln">
+</span><span class="pun">)</span></pre></div></div>
+</div>
+
+<p>On pressing the <strong>Create Data</strong> button, make the network request,
+which sends the data in the <code class="language-plaintext highlighter-rouge">TextField</code> to the server
+as a <code class="language-plaintext highlighter-rouge">POST</code> request.
+The Future, <code class="language-plaintext highlighter-rouge">_futureAlbum</code>, is used in the next step.</p>
+
+<h2 id="5-display-the-response-on-screen">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#5-display-the-response-on-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Display the response on screen</h2>
+
+<p>To display the data on screen, use the
+<a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"><code class="language-plaintext highlighter-rouge">FutureBuilder</code></a> widget.
+The <code class="language-plaintext highlighter-rouge">FutureBuilder</code> widget comes with Flutter and
+makes it easy to work with asynchronous data sources.
+You must provide two parameters:</p>
+
+<ol>
+  <li>The <code class="language-plaintext highlighter-rouge">Future</code> you want to work with. In this case,
+the future returned from the <code class="language-plaintext highlighter-rouge">createAlbum()</code> function.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">builder</code> function that tells Flutter what to render,
+depending on the state of the <code class="language-plaintext highlighter-rouge">Future</code>: loading,
+success, or error.</li>
+</ol>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">snapshot.hasData</code> only returns <code class="language-plaintext highlighter-rouge">true</code> when
+the snapshot contains a non-null data value.
+This is why the <code class="language-plaintext highlighter-rouge">createAlbum()</code> function should throw an exception
+even in the case of a “404 Not Found” server response.
+If <code class="language-plaintext highlighter-rouge">createAlbum()</code> returns <code class="language-plaintext highlighter-rouge">null</code>, then
+<code class="language-plaintext highlighter-rouge">CircularProgressIndicator</code> displays indefinitely.</p>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-7" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-7"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="typ">FutureBuilder</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;(</span><span class="pln">
+  future</span><span class="pun">:</span><span class="pln"> _futureAlbum</span><span class="pun">,</span><span class="pln">
+  builder</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">context</span><span class="pun">,</span><span class="pln"> snapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">hasData</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">data</span><span class="pun">!.</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">hasError</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="str">'${snapshot.error}'</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">CircularProgressIndicator</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">},</span><span class="pln">
+</span><span class="pun">)</span></pre></div></div>
+</div>
+
+<h2 id="complete-example">
+<a class="anchor" href="https://docs.flutter.dev/cookbook/networking/send-data#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete example</h2>
+
+<div class="code-excerpt">
+<div class="code-excerpt__code"><button class="code-excerpt__copy-btn" type="button" data-toggle="tooltip" title="" data-clipboard-target="#code-excerpt-8" data-original-title="Copy code">  <i class="material-icons">content_copy</i></button><div id="code-excerpt-8"><pre class="prettyprint lang-dart prettyprinted" style=""><span class="kwd">import</span><span class="pln"> </span><span class="str">'dart:async'</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> </span><span class="str">'dart:convert'</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> </span><span class="str">'package:flutter/material.dart'</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> </span><span class="str">'package:http/http.dart'</span><span class="pln"> </span><span class="kwd">as</span><span class="pln"> http</span><span class="pun">;</span><span class="pln">
+
+</span><span class="typ">Future</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;</span><span class="pln"> createAlbum</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> title</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">async</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> response </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">await</span><span class="pln"> http</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="pln">
+    </span><span class="typ">Uri</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="str">'https://jsonplaceholder.typicode.com/albums'</span><span class="pun">),</span><span class="pln">
+    headers</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'Content-Type'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'application/json; charset=UTF-8'</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    body</span><span class="pun">:</span><span class="pln"> jsonEncode</span><span class="pun">(&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;{</span><span class="pln">
+      </span><span class="str">'title'</span><span class="pun">:</span><span class="pln"> title</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}),</span><span class="pln">
+  </span><span class="pun">);</span><span class="pln">
+
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">response</span><span class="pun">.</span><span class="pln">statusCode </span><span class="pun">==</span><span class="pln"> </span><span class="lit">201</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// If the server did return a 201 CREATED response,</span><span class="pln">
+    </span><span class="com">// then parse the JSON.</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">.</span><span class="pln">fromJson</span><span class="pun">(</span><span class="pln">jsonDecode</span><span class="pun">(</span><span class="pln">response</span><span class="pun">.</span><span class="pln">body</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// If the server did not return a 201 CREATED response,</span><span class="pln">
+    </span><span class="com">// then throw an exception.</span><span class="pln">
+    </span><span class="kwd">throw</span><span class="pln"> </span><span class="typ">Exception</span><span class="pun">(</span><span class="str">'Failed to create album.'</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Album</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> id</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> title</span><span class="pun">;</span><span class="pln">
+
+  </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">({</span><span class="kwd">required</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">id</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">required</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">title</span><span class="pun">});</span><span class="pln">
+
+  </span><span class="kwd">factory</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">.</span><span class="pln">fromJson</span><span class="pun">(</span><span class="typ">Map</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">,</span><span class="pln"> </span><span class="typ">dynamic</span><span class="pun">&gt;</span><span class="pln"> json</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Album</span><span class="pun">(</span><span class="pln">
+      id</span><span class="pun">:</span><span class="pln"> json</span><span class="pun">[</span><span class="str">'id'</span><span class="pun">],</span><span class="pln">
+      title</span><span class="pun">:</span><span class="pln"> json</span><span class="pun">[</span><span class="str">'title'</span><span class="pun">],</span><span class="pln">
+    </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="typ">void</span><span class="pln"> main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  runApp</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">MyApp</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MyApp</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">StatefulWidget</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">MyApp</span><span class="pun">({</span><span class="typ">Key</span><span class="pun">?</span><span class="pln"> key</span><span class="pun">})</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">super</span><span class="pun">(</span><span class="pln">key</span><span class="pun">:</span><span class="pln"> key</span><span class="pun">);</span><span class="pln">
+
+  @override
+  _MyAppState createState</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> _MyAppState</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">class</span><span class="pln"> _MyAppState </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">State</span><span class="pun">&lt;</span><span class="typ">MyApp</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">TextEditingController</span><span class="pln"> _controller </span><span class="pun">=</span><span class="pln"> </span><span class="typ">TextEditingController</span><span class="pun">();</span><span class="pln">
+  </span><span class="typ">Future</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;?</span><span class="pln"> _futureAlbum</span><span class="pun">;</span><span class="pln">
+
+  @override
+  </span><span class="typ">Widget</span><span class="pln"> build</span><span class="pun">(</span><span class="typ">BuildContext</span><span class="pln"> context</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">MaterialApp</span><span class="pun">(</span><span class="pln">
+      title</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Create Data Example'</span><span class="pun">,</span><span class="pln">
+      theme</span><span class="pun">:</span><span class="pln"> </span><span class="typ">ThemeData</span><span class="pun">(</span><span class="pln">
+        primarySwatch</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Colors</span><span class="pun">.</span><span class="pln">blue</span><span class="pun">,</span><span class="pln">
+      </span><span class="pun">),</span><span class="pln">
+      home</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scaffold</span><span class="pun">(</span><span class="pln">
+        appBar</span><span class="pun">:</span><span class="pln"> </span><span class="typ">AppBar</span><span class="pun">(</span><span class="pln">
+          title</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="str">'Create Data Example'</span><span class="pun">),</span><span class="pln">
+        </span><span class="pun">),</span><span class="pln">
+        body</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Container</span><span class="pun">(</span><span class="pln">
+          alignment</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Alignment</span><span class="pun">.</span><span class="pln">center</span><span class="pun">,</span><span class="pln">
+          padding</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">EdgeInsets</span><span class="pun">.</span><span class="pln">all</span><span class="pun">(</span><span class="lit">8.0</span><span class="pun">),</span><span class="pln">
+          child</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">_futureAlbum </span><span class="pun">==</span><span class="pln"> </span><span class="typ">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> buildColumn</span><span class="pun">()</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> buildFutureBuilder</span><span class="pun">(),</span><span class="pln">
+        </span><span class="pun">),</span><span class="pln">
+      </span><span class="pun">),</span><span class="pln">
+    </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="typ">Column</span><span class="pln"> buildColumn</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Column</span><span class="pun">(</span><span class="pln">
+      mainAxisAlignment</span><span class="pun">:</span><span class="pln"> </span><span class="typ">MainAxisAlignment</span><span class="pun">.</span><span class="pln">center</span><span class="pun">,</span><span class="pln">
+      children</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">Widget</span><span class="pun">&gt;[</span><span class="pln">
+        </span><span class="typ">TextField</span><span class="pun">(</span><span class="pln">
+          controller</span><span class="pun">:</span><span class="pln"> _controller</span><span class="pun">,</span><span class="pln">
+          decoration</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">InputDecoration</span><span class="pun">(</span><span class="pln">hintText</span><span class="pun">:</span><span class="pln"> </span><span class="str">'Enter Title'</span><span class="pun">),</span><span class="pln">
+        </span><span class="pun">),</span><span class="pln">
+        </span><span class="typ">ElevatedButton</span><span class="pun">(</span><span class="pln">
+          onPressed</span><span class="pun">:</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            setState</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+              _futureAlbum </span><span class="pun">=</span><span class="pln"> createAlbum</span><span class="pun">(</span><span class="pln">_controller</span><span class="pun">.</span><span class="pln">text</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">});</span><span class="pln">
+          </span><span class="pun">},</span><span class="pln">
+          child</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="str">'Create Data'</span><span class="pun">),</span><span class="pln">
+        </span><span class="pun">),</span><span class="pln">
+      </span><span class="pun">],</span><span class="pln">
+    </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="typ">FutureBuilder</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;</span><span class="pln"> buildFutureBuilder</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">FutureBuilder</span><span class="pun">&lt;</span><span class="typ">Album</span><span class="pun">&gt;(</span><span class="pln">
+      future</span><span class="pun">:</span><span class="pln"> _futureAlbum</span><span class="pun">,</span><span class="pln">
+      builder</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">context</span><span class="pun">,</span><span class="pln"> snapshot</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">hasData</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">data</span><span class="pun">!.</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">snapshot</span><span class="pun">.</span><span class="pln">hasError</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Text</span><span class="pun">(</span><span class="str">'${snapshot.error}'</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">CircularProgressIndicator</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre></div></div>
+</div>
+
+
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="https://docs.flutter.dev/cookbook/networking/background-parsing">Parse JSON in the background</a>
+      </li>
+      <li class="next">
+          <a href="https://docs.flutter.dev/cookbook/networking/update-data">Update data over the internet</a>
+      </li>
+      </ul>
+  </nav>
+
+
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+      <footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="./Send data to the internet _ Flutter_files/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="https://docs.flutter.dev/tos">terms</a></li>
+              <li><a href="https://docs.flutter.dev/brand">brand usage</a></li>
+              <li><a href="https://docs.flutter.dev/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://esflutter.dev/">español</a></li>
+              <li><a href="https://flutter.cn/" class="text-nowrap">社区中文资源</a></li> 
+              <li><a href="https://flutter-ko.dev/" class="text-nowrap">한국어</a></li>
+              <li><a href="https://blog.google/inside-google/company-announcements/standing-with-black-community">We stand in solidarity with the Black community. Black Lives Matter.</a></li>
+          </ul>
+          <p class="licenses">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+    
+    <script src="./Send data to the internet _ Flutter_files/jquery.min.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/popper.min.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/bootstrap.min.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/clipboard.min.js.download"></script>
+    
+    <script src="./Send data to the internet _ Flutter_files/prettify.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/lang-css.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/lang-dart.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/lang-yaml.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/tabs.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/archive.js.download"></script>
+    <script src="./Send data to the internet _ Flutter_files/main.js.download"></script>
+    
+    
+
+  
+
+</body></html>

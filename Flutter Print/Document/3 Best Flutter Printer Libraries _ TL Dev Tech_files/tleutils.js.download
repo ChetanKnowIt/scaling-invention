@@ -1,0 +1,53 @@
+(function($){
+
+$(document).ready(function(){
+
+	if ( $('body').hasClass('single')) {
+		//check if post contains amz links
+		var has_amz = false;
+		var disclaimer = '<p style="margin: 10px 0;font-style: italic; color: #888; text-align:center;">When you buy through links on our site, '
+				+ 'we may earn an affiliate commission.</p>';
+		var firstAmz = false;
+		$('.entry-content a').each(function(){
+			if(firstAmz) return;
+			var conditions = ['amazon.com', 'amzn.to'];			
+			for (var i = 0; i < conditions.length; i++) {
+				var link = $(this).attr('href');	
+				if(link){
+					var pos = link.indexOf(conditions[i]);
+					if(pos > -1){
+						has_amz = true;
+						firstAmz = true;
+						$('header.site-header').after(disclaimer);	
+						/*if($(this).closest('figure').length > 0){
+							$(this).closest('figure').before(disclaimer);	
+						} else if($(this).closest('.wp-block-columns').length > 0){
+							$(this).closest('.wp-block-columns').before(disclaimer);
+						} else if($(this).closest('h3').length > 0){
+							$(this).closest('h3').before(disclaimer);	
+						} else if($(this).closest('p').length > 0){
+							$(this).closest('p').before(disclaimer);	
+						}	*/					
+						break;
+					}
+				}				
+			}						
+		})
+		
+		//show disclaimer if there is amz links
+		/*if(has_amz){
+			var disclaimer = '<p style="margin: 10px 0;font-style: italic;">When you buy through links on our site, '
+				+ 'we may earn an affiliate commission.</p>';			
+			//show after first h2/h3
+			if($('article h2').length > 0) {				
+		        $('article h2').first().after(disclaimer);
+		    } if($('article h3').length > 0) {
+	     		$('article h3').first().after(disclaimer);     		
+	     	} else {
+	     		$('figure').first().before(disclaimer);
+	     	}
+		}*/
+	}
+});
+
+ })(jQuery); 
